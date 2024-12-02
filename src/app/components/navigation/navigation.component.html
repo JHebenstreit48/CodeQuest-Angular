@@ -1,0 +1,16 @@
+<div class="navigation" [class.open]="isMenuOpen">
+    <button class="toggle-button" (click)="toggleMenu()">
+      {{ isMenuOpen ? 'Close' : 'Open' }}
+    </button>
+    <ul class="menu">
+      <li *ngFor="let item of menuItems" class="menu-item">
+        <span>{{ item.name }}</span>
+        <ul *ngIf="item.children?.length" class="submenu">
+          <li *ngFor="let subItem of item.children" class="submenu-item">
+            <a [routerLink]="subItem.path">{{ subItem.name }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
