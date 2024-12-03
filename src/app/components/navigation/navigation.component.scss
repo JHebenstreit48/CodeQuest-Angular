@@ -33,28 +33,13 @@
       .menu-item {
         margin-bottom: 10px;
   
-        span {
-          font-weight: bold;
+        .mainMenuBtn {
+          text-decoration: none;
         }
-  
-        .submenu {
-          list-style: none;
-          margin-left: 20px;
-  
-          .submenu-item {
-            margin-bottom: 5px;
-  
-            a {
-              color: #007acc;
-              text-decoration: none;
-  
-              &:hover {
-                text-decoration: underline;
-              }
-            }
+
+        .subMenuBtn {
+          text-decoration: none;
           }
         }
       }
     }
-  }
-  
