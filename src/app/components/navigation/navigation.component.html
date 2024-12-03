@@ -1,16 +1,31 @@
 <div class="navigation" [class.open]="isMenuOpen">
-    <button class="toggle-button" (click)="toggleMenu()">
-      {{ isMenuOpen ? 'Close' : 'Open' }}
-    </button>
-    <ul class="menu">
-      <li *ngFor="let item of menuItems" class="menu-item">
-        <span>{{ item.name }}</span>
-        <ul *ngIf="item.children?.length" class="submenu">
+  <button class="btn btn-primary toggle-button" (click)="toggleMenu()">
+    {{ isMenuOpen ? 'Close' : 'Open' }}
+  </button>
+  <ul class="menu list-unstyled">
+    <!-- For Home, just render it as a link without a submenu -->
+    <li *ngFor="let item of menuItems" class="menu-item">
+      <a *ngIf="item.name === 'Home'" [routerLink]="item.path">{{ item.name }}</a>
+
+      <!-- For other items with children, show them with a submenu -->
+      <div *ngIf="item.name !== 'Home'">
+        <button 
+          class="btn btn-link" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          [attr.data-bs-target]="'#' + item.name.replace(' ', '-')"
+          [attr.aria-controls]="item.name.replace(' ', '-')"
+          aria-expanded="false">
+          {{ item.name }}
+        </button>
+        <ul 
+          id="{{ item.name.replace(' ', '-') }}" 
+          class="collapse submenu list-unstyled">
           <li *ngFor="let subItem of item.children" class="submenu-item">
             <a [routerLink]="subItem.path">{{ subItem.name }}</a>
           </li>
         </ul>
-      </li>
-    </ul>
-  </div>
-  
+      </div>
+    </li>
+  </ul>
+</div>

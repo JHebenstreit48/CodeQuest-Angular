@@ -1,11 +1,14 @@
 import { Routes } from '@angular/router';
-import { HtmlComponent } from './components/htmlNotes/html.component'; // HTML Notes
-// import { HtmlCodeComponent } from './components/htmlCode/html-code.component'; // HTML Code Notes
+import { HomeComponent } from './components/home/home.component';
+import { HtmlComponent } from './components/htmlNotes/html.component';
+import { HtmlCodeNotesComponent } from './components/html-code-notes/html-code-notes.component';
+import { CSSNotesComponent } from './components/css-notes/css-notes.component';
+// import { CssCodeComponent } from './components/cssCode/css-code.component';
 
 export const routes: Routes = [
-  { path: '', component: HtmlComponent }, // Home
+  { path: '', component: HomeComponent }, // Default route (Home)
   { path: 'html-notes', component: HtmlComponent },
-  // { path: 'html-code-notes', component: HtmlCodeComponent },
-  { path: 'css-notes', component: HtmlComponent }, // Example for CSS
-  { path: 'css-code-notes', component: HtmlComponent },
+  { path: 'html-code-notes', component: HtmlCodeNotesComponent },
+  { path: 'css-notes', component: CSSNotesComponent },
+  // { path: 'css-code-notes', component: CssCodeComponent },
 ];
