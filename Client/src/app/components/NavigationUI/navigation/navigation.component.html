@@ -1,1 +1,43 @@
-<p>navigation works!</p>
+<div class="navigationMenu">
+    <button class="hamburgerButton" (click)="toggleMenu()">☰</button>
+  
+    <div [class.navigationContent]="true" [class.open]="isMenuOpen">
+      <app-search-icon (click)="showModal = true"></app-search-icon>
+  
+      <app-search-modal
+        *ngIf="showModal"
+        [searchTerm]="searchTerm"
+        [searchResults]="searchResults"
+        [searchMode]="searchMode"
+        (close)="showModal = false"
+        (manualSearch)="handleSearch($event)">
+      </app-search-modal>
+  
+      <nav class="mainNav">
+        <div *ngFor="let page of pages; let i = index" class="dropdown">
+          <ng-container *ngIf="page.subpages.length === 0">
+            <a routerLink="/" class="dropdownButton level-1">{{ page.name }}</a>
+          </ng-container>
+          <ng-container *ngIf="page.subpages.length > 0">
+            <button
+              class="dropdownButton level-1"
+              [class.active]="activeDropdown.has('page-' + i)"
+              (click)="toggleDropdown('page-' + i)">
+              {{ page.name }}
+            </button>
+            <div *ngIf="activeDropdown.has('page-' + i)" class="dropdownContent active">
+              <ng-container *ngFor="let sp of page.subpages">
+                <div class="dropdownItem level-2">
+                  <a *ngIf="sp.path" [routerLink]="sp.path" class="dropdownButton level-2">
+                    {{ sp.name }}
+                  </a>
+                  <span *ngIf="!sp.path" class="dropdownButton level-2">{{ sp.name }}</span>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </nav>
+    </div>
+  </div>
+  

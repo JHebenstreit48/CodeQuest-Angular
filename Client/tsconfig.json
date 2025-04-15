@@ -15,11 +15,12 @@
     "skipLibCheck": true,
     "isolatedModules": true,
 
-    "baseUrl": "./",
+    "baseUrl": "src/app",
     "paths": {
-      "@components/*": ["src/app/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@/Navigation-Structure/*": ["src/app/Navigation-Structure/*"]
+      "@/*": ["*"],
+      "@components/*": ["components/*"],
+      "@assets/*": ["../assets/*"],
+      "@/Navigation-Structure/*": ["Navigation-Structure/*"]
     },
 
     "outDir": "./dist/out-tsc"
