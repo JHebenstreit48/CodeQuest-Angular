@@ -64,7 +64,7 @@
    
    /* ==============================
              Navigation Content         
-         ============================== */
+      ============================== */
    .navigationContent {
      // Show normally on large screens
      display: flex;
@@ -132,7 +132,7 @@
    
    /* ==============================
               Dropdown Button Style       
-            ============================== */
+      ============================== */
    .dropdownButton {
      background-color: transparent;
      border: none;
@@ -201,7 +201,7 @@
    
    /* ==============================
                  Dropdown Layout          
-            ============================== */
+      ============================== */
    .dropdown {
      position: relative;
      display: inline-block;
@@ -217,64 +217,72 @@
    
    /* ==============================
              Dropdown Menu Content        
-            ============================== */
-   .dropdownContent {
-     position: absolute;
-     top: 100%;
-     left: 50%;
-     transform: translateX(-50%);
-     background-color: $dropdown-bg;
-     min-width: $dropdown-width;
-     border-radius: 5px;
-     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-     text-align: center;
-     padding: 1rem 0;
-     display: none;
-     z-index: 12;
-   
-     &.active {
-       display: grid;
-       grid-template-columns: 1fr;
-       max-height: 31.2rem;
-       overflow-y: auto;
-       scrollbar-width: thin;
-       scrollbar-color: $dropdown-hover $scrollbar-track;
-   
-       &::-webkit-scrollbar {
-         width: 6px;
-       }
-   
-       &::-webkit-scrollbar-thumb {
-         background: $dropdown-hover;
-         border-radius: 5px;
-   
-         &:hover {
-           background: color.adjust($dropdown-hover, $lightness: 10%);
-         }
-       }
-   
-       &::-webkit-scrollbar-track {
-         background: transparent;
-       }
-   
-       &::-webkit-scrollbar-button {
-         display: none;
-       }
-   
-       @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
-         position: static;
-         transform: none;
-         background: transparent;
-         box-shadow: none;
-         padding: 0;
-         margin-top: 0.5rem;
-       }
-     }
-   }
+      ============================== */
+      .dropdownContent {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $dropdown-bg;
+        min-width: $dropdown-width;
+        border-radius: 5px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        padding: 1rem 0;
+        display: none;
+        z-index: 12;
+      
+        &.active {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          max-height: 31.2rem;
+          overflow-y: auto;
+          scrollbar-width: thin;
+          scrollbar-color: $dropdown-hover $scrollbar-track;
+      
+          &::-webkit-scrollbar {
+            width: 6px;
+          }
+      
+          &::-webkit-scrollbar-thumb {
+            background: $dropdown-hover;
+            border-radius: 5px;
+      
+            &:hover {
+              background: color.adjust($dropdown-hover, $lightness: 10%);
+            }
+          }
+      
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+      
+          &::-webkit-scrollbar-button {
+            display: none;
+          }
+      
+          @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
+            position: static;
+            transform: none;
+            background: transparent;
+            box-shadow: none;
+            padding: 0;
+            margin-top: 0.5rem;
+          }
+        }
+      }
+      
+      // Fix alignment for nested levels within dropdown
+      .dropdownContent .dropdownButton {
+        text-align: center;
+        margin: 0 auto;
+      }
+      
    
    /* ==============================
            Active Nested Dropdown Menu  
-          ============================== */
+      ============================== */
    .dropdownMenu.active {
      display: flex;
      flex-direction: column;
