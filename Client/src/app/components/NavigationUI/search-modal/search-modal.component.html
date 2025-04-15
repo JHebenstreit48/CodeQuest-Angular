@@ -1,1 +1,57 @@
-<p>search-modal works!</p>
+<div class="searchModal">
+    <div class="searchModalContent">
+      <div class="searchModalHeader">
+        <span>Search</span>
+        <button class="closeButton" (click)="close.emit()">×</button>
+      </div>
+  
+      <div class="searchControls">
+        <div class="inputWithClear">
+          <input
+            type="text"
+            placeholder="Type to search..."
+            [(ngModel)]="inputValue"
+            (input)="onChange($event)"
+            (keydown)="onKeydown($event)"
+            class="filterInput"
+          />
+          <button *ngIf="inputValue" class="clearButton" (click)="clearSearch()">×</button>
+        </div>
+  
+        <div class="searchModeToggle">
+          <label>
+            <input
+              type="radio"
+              name="searchMode"
+              [checked]="searchMode === 'instant'"
+              (change)="setMode('instant')"
+            />
+            Instant
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="searchMode"
+              [checked]="searchMode === 'manual'"
+              (change)="setMode('manual')"
+            />
+            Manual
+          </label>
+          <button class="resetButton" (click)="resetStorage()">Reset</button>
+        </div>
+      </div>
+  
+      <div *ngIf="hasSearched">
+        <div *ngIf="searchResults.length === 0" class="searchResultEmpty">No results found.</div>
+        <ul *ngIf="searchResults.length > 0">
+          <li *ngFor="let item of searchResults">
+            <a [routerLink]="item.path" (click)="close.emit()">
+              <strong>{{ item.name }}</strong>
+              <span class="breadcrumbs">({{ item.breadcrumbs.join(' > ') }})</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
