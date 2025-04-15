@@ -1,43 +1,59 @@
 <div class="navigationMenu">
-    <button class="hamburgerButton" (click)="toggleMenu()">☰</button>
-  
-    <div [class.navigationContent]="true" [class.open]="isMenuOpen">
-      <app-search-icon (click)="showModal = true"></app-search-icon>
-  
-      <app-search-modal
-        *ngIf="showModal"
-        [searchTerm]="searchTerm"
-        [searchResults]="searchResults"
-        [searchMode]="searchMode"
-        (close)="showModal = false"
-        (manualSearch)="handleSearch($event)">
-      </app-search-modal>
-  
-      <nav class="mainNav">
-        <div *ngFor="let page of pages; let i = index" class="dropdown">
-          <ng-container *ngIf="page.subpages.length === 0">
-            <a routerLink="/" class="dropdownButton level-1">{{ page.name }}</a>
-          </ng-container>
-          <ng-container *ngIf="page.subpages.length > 0">
-            <button
-              class="dropdownButton level-1"
-              [class.active]="activeDropdown.has('page-' + i)"
-              (click)="toggleDropdown('page-' + i)">
-              {{ page.name }}
-            </button>
-            <div *ngIf="activeDropdown.has('page-' + i)" class="dropdownContent active">
-              <ng-container *ngFor="let sp of page.subpages">
-                <div class="dropdownItem level-2">
-                  <a *ngIf="sp.path" [routerLink]="sp.path" class="dropdownButton level-2">
-                    {{ sp.name }}
-                  </a>
-                  <span *ngIf="!sp.path" class="dropdownButton level-2">{{ sp.name }}</span>
-                </div>
-              </ng-container>
-            </div>
-          </ng-container>
-        </div>
-      </nav>
-    </div>
+  <button class="hamburgerButton" (click)="toggleMenu()">☰</button>
+
+  <div [class.navigationContent]="true" [class.open]="isMenuOpen">
+    <app-search-icon (click)="showModal = true"></app-search-icon>
+
+    <app-search-modal
+      *ngIf="showModal"
+      [searchTerm]="searchTerm"
+      [searchResults]="searchResults"
+      [searchMode]="searchMode"
+      (close)="showModal = false"
+      (manualSearch)="handleSearch($event)">
+    </app-search-modal>
+
+    <nav class="mainNav">
+      <div *ngFor="let page of pages; let i = index" class="dropdown">
+        <ng-container *ngIf="page.subpages.length === 0">
+          <a routerLink="/" class="dropdownButton level-1">{{ page.name }}</a>
+        </ng-container>
+        <ng-container *ngIf="page.subpages.length > 0">
+          <button
+            class="dropdownButton level-1"
+            [class.active]="activeDropdown.has('page-' + i)"
+            (click)="toggleDropdown('page-' + i)">
+            {{ page.name }}
+          </button>
+          <div *ngIf="activeDropdown.has('page-' + i)" class="dropdownContent active">
+            <ng-container *ngFor="let sp of page.subpages; let j = index">
+              <ng-container *ngTemplateOutlet="renderSubpage; context: { subpage: sp, key: 'page-' + i + '-' + j, level: 2 }"></ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </nav>
   </div>
-  
+</div>
+
+<!-- Recursive Template -->
+<ng-template #renderSubpage let-subpage="subpage" let-key="key" let-level="level">
+  <div class="dropdownItem level-{{ level }}">
+    <a *ngIf="subpage.path" [routerLink]="subpage.path" class="dropdownButton level-{{ level }}">
+      {{ subpage.name }}
+    </a>
+    <ng-container *ngIf="!subpage.path && subpage.subpages">
+      <button
+        class="dropdownButton level-{{ level }}"
+        [class.active]="activeDropdown.has(key)"
+        (click)="toggleDropdown(key)">
+        {{ subpage.name }}
+      </button>
+      <div *ngIf="activeDropdown.has(key)" class="dropdownMenu active">
+        <ng-container *ngFor="let child of subpage.subpages; let k = index">
+          <ng-container *ngTemplateOutlet="renderSubpage; context: { subpage: child, key: key + '-' + k, level: level + 1 }"></ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
