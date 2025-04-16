@@ -17,7 +17,7 @@
    $table-border: #ddd;
    $table-header-bg: #333;
    $table-cell-bg: #444;
-   $dropdown-hover: rgb(60, 60, 60); // ✅ Added missing variable
+   $dropdown-hover: rgb(60, 60, 60);
    
    $font-main: "Arial", sans-serif;
    $font-monospace: monospace;
@@ -69,7 +69,7 @@
        text-shadow: 1px 2px 1px black;
        line-height: 1.5;
        font-size: 20px;
-     
+   
        @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
          display: flex;
          flex-flow: column wrap;
@@ -78,115 +78,188 @@
          font-size: 1rem;
          padding-top: 1rem;
        }
-     
-       h1 {
+   
+       /* ::ng-deep for markdown-rendered tags and classes */
+   
+       ::ng-deep h1 {
          color: $secondary-color;
          text-align: center;
          font-size: 3rem;
        }
-     
-       h2,
-       h3,
-       h4,
-       h5,
-       h6 {
+   
+       ::ng-deep h2,
+       ::ng-deep h3,
+       ::ng-deep h4,
+       ::ng-deep h5,
+       ::ng-deep h6 {
          color: $danger-color;
          text-shadow: 1px 2px 1px black;
          text-align: center;
-     
+   
          @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
            width: 20rem;
          }
        }
-     
+   
        @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
-         p {
+         ::ng-deep p {
            width: 19rem;
            margin: 0 auto;
          }
        }
-     
-       hr {
+   
+       ::ng-deep p {
+         font-size: 1.1rem;
+         color: $primary-color;
+         text-shadow: 1px 1px 1px black;
+         line-height: 1.7;
+         margin-bottom: 1rem;
+       }
+   
+       ::ng-deep hr {
          border: 1.5px solid $primary-color;
          opacity: 1;
          box-shadow: 2px 2px 2px black;
          width: 30rem;
-     
+   
          @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
            width: 22.5rem;
          }
        }
-     
-       .emphasis {
-         @include text-emphasis($secondary-color, 23px);
+   
+       ::ng-deep ul,
+       ::ng-deep ol {
+         margin-left: 2rem;
+         margin-bottom: 1rem;
+         line-height: 1.6;
+         font-size: 1.1rem;
+         color: $primary-color;
        }
-     
-       .secondEmphasis {
-         @include text-emphasis($success-color, 23px);
+   
+       ::ng-deep li {
+         margin-bottom: 0.5rem;
        }
-     
-       .subheadingEmphasis1 {
+   
+       ::ng-deep code {
+         font-family: $font-monospace;
+         background-color: $background-code;
+         padding: 0.2rem 0.5rem;
+         border-radius: 4px;
+         font-size: 0.95rem;
+         color: $emphasis-color;
+       }
+   
+       ::ng-deep pre code {
+         display: block;
+         padding: 1rem;
+         background-color: $background-code;
+         border-radius: 6px;
+         overflow-x: auto;
+         white-space: pre-wrap;
+         word-break: break-word;
+         color: white;
+         font-size: 1rem;
+       }
+   
+       ::ng-deep table {
+         width: 100%;
+         border-collapse: collapse;
+         margin: 2rem 0;
+         font-size: 0.95rem;
+       }
+   
+       ::ng-deep th,
+       ::ng-deep td {
+         border: 1px solid $table-border;
+         padding: 0.75rem 1rem;
+         background-color: $background-table;
+         text-align: left;
+         color: $primary-color;
+       }
+   
+       ::ng-deep th {
+         background-color: $table-header-bg;
+         color: white;
+       }
+   
+       ::ng-deep blockquote {
+         margin: 1rem 0;
+         padding-left: 1rem;
+         border-left: 4px solid $highlight-color;
+         color: lighten($highlight-color, 15%);
+         font-style: italic;
+       }
+   
+       ::ng-deep .emphasis {
+         @include text-emphasis($secondary-color, 20px);
+       }
+   
+       ::ng-deep .secondEmphasis {
+         @include text-emphasis($success-color, 20px);
+       }
+   
+       ::ng-deep .subheadingEmphasis1 {
          @include flex-center;
          @include text-emphasis($highlight-color, 40px);
          margin: 1.6rem auto;
        }
-     
-       .subheadingEmphasis2 {
+   
+       ::ng-deep .subheadingEmphasis2 {
          @include text-emphasis($secondary-color, 30px);
        }
-     
-       .codeSnip,
-       .shell {
+   
+       ::ng-deep .codeSnip,
+       ::ng-deep .shell {
          color: $emphasis-color;
          font: normal 1.3rem/1.5 $font-monospace !important;
          padding: 2px 4px;
          border-radius: 3px;
        }
-     
-       .bullet1,
-       .bullet2,
-       .bullet3 {
+   
+       ::ng-deep .bullet1,
+       ::ng-deep .bullet2,
+       ::ng-deep .bullet3 {
          display: inline-block;
          padding-left: 50px !important;
        }
-     
-       .bullet1 {
+   
+       ::ng-deep .bullet1 {
          column-count: 2;
          width: 44rem;
          color: $bullet-color;
        }
-     
-       .bullet2 {
+   
+       ::ng-deep .bullet2 {
          column-count: 1;
          width: 36rem;
        }
-     
-       .bullet3 {
+   
+       ::ng-deep .bullet3 {
          column-count: 3;
          width: 40rem;
          color: $info-color;
        }
    
-       .tableWrapper {
+       ::ng-deep .tableWrapper {
          display: flex;
-     
+   
          @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
            width: 100%;
            -webkit-overflow-scrolling: touch;
            margin: 0 auto 1.5rem auto;
            padding: 0;
            justify-content: center;
-     
+   
            &::-webkit-scrollbar {
              height: 6px;
            }
-     
+   
            &::-webkit-scrollbar-thumb {
              background: $dropdown-hover;
              border-radius: 3px;
            }
          }
-     
+   
          @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
            table {
              margin: 0 auto;
@@ -194,44 +267,44 @@
              width: 20rem;
            }
          }
-     
-         .tableHeader {
+   
+         ::ng-deep .tableHeader {
            background-color: $table-header-bg;
          }
-       
-         .tableCellHeader {
+   
+         ::ng-deep .tableCellHeader {
            text-align: center;
            padding: 12px;
            border: 1px solid $table-border;
            background-color: $table-cell-bg;
-       
+   
            @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
              width: 1rem;
            }
          }
-       
-         .tableRow:hover {
+   
+         ::ng-deep .tableRow:hover {
            background-color: rgba(255, 255, 255, 0.1);
            transition: background-color 0.3s ease-in-out;
          }
-       
-         .tableCell,
-         .centeredCell {
+   
+         ::ng-deep .tableCell,
+         ::ng-deep .centeredCell {
            padding: 10px;
            text-align: left;
            border: 1px solid $table-border;
            background-color: $background-table;
-     
+   
            @media only screen and (max-width: $cellphone-portrait) and (orientation: portrait) {
              width: 1rem;
            }
          }
-       
-         .tableEmphasis {
+   
+         ::ng-deep .tableEmphasis {
            @include text-emphasis($secondary-color, 1.4rem);
          }
        }
-     
+   
        .codeBlockWrapper {
          position: relative;
          border: 1px solid #444;
@@ -239,7 +312,7 @@
          background-color: $background-code;
          line-height: 1.5;
          overflow-x: auto;
-     
+   
          .codeBlockHeader {
            @include flex-center;
            justify-content: space-between;
@@ -250,7 +323,7 @@
            border-bottom: 1px solid #444;
            border-radius: 11px 11px 0 0;
          }
-     
+   
          .copyCodeButton {
            background: #444;
            color: #fff;
@@ -258,12 +331,12 @@
            border-radius: 3px;
            padding: 0.25rem 0.5rem;
            cursor: pointer;
-     
+   
            &:hover {
              background: #555;
            }
          }
-     
+   
          pre,
          code {
            line-height: 1.7 !important;
@@ -272,25 +345,16 @@
            overflow-x: auto;
          }
        }
-     
+   
        .punctuationSymbol {
          @include text-emphasis($emphasis-color, 30px);
          margin: 0 5px;
        }
-     
+   
        .token {
          width: 10rem;
          line-height: 2.4rem;
        }
-   }
-   
-   
-   
-     /* =============================
-        Table Styling (Universal)
-        ============================= */
-   
-     
-   
+     }
    }
    

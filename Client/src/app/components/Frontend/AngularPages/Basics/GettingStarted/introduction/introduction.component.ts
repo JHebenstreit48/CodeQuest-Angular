@@ -9,5 +9,5 @@ import { NotesRenderComponent } from '@/components/NotesPagesRendering/notes-ren
   templateUrl: './introduction.component.html'
 })
 export class IntroductionComponent {
-  markdownFilePath = '/FrontEnd/AngularNotes/AngularBasics/GettingStarted/Introduction.md';
+  markdownFilePath = '/FrontEndNotes/AngularNotes/AngularBasics/GettingStarted/Introduction.md';
 }

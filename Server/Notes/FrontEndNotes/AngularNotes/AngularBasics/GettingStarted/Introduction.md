@@ -21,7 +21,7 @@ Angular is a **TypeScript-based front-end framework** for building dynamic, scal
 
 ### Core Angular Concepts
 
-🔹 **Components** → The building blocks of UI.  
+🔹 <span class="emphasis">Components</span> → The building blocks of UI.  
 🔹 **Modules** → Organize Angular applications.  
 🔹 **Services & Dependency Injection** → Share logic across components.  
 🔹 **Directives** → Extend HTML with additional behavior.  
