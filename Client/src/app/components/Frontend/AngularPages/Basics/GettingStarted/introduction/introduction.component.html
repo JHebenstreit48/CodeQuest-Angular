@@ -1,1 +1,6 @@
-<p>introduction works!</p>
+<app-header [text]="'Angular Introduction'" [size]="'md'"></app-header>
+
+<app-notes-render
+  [filePath]="markdownFilePath"
+  [markdownContent]="'markdownContent'">
+</app-notes-render>

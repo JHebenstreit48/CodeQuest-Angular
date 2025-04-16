@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-running',
   imports: [],
   templateUrl: './running.component.html',
-  styleUrl: './running.component.scss'
 })
 export class RunningComponent {
 

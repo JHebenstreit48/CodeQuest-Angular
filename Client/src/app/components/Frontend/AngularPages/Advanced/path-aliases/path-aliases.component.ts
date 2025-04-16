@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-path-aliases',
   imports: [],
   templateUrl: './path-aliases.component.html',
-  styleUrl: './path-aliases.component.scss'
 })
 export class PathAliasesComponent {
 
