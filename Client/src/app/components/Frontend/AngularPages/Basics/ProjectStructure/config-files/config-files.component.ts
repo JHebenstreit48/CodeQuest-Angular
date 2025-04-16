@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-config-files',
   imports: [],
   templateUrl: './config-files.component.html',
-  styleUrl: './config-files.component.scss'
 })
 export class ConfigFilesComponent {
 
