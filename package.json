@@ -1,0 +1,10 @@
+{
+  "name": "codequest-root",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run dev --prefix Server\" \"npm run start --prefix Client\""
+  }
+}

@@ -1,10 +1,10 @@
 <div class="card">
-  <div class="markdownContent">
-    <markdown 
-      [data]="content"
-      [lineNumbers]="true">
-    </markdown>
+  <div class="markdownContent" *ngIf="!loading && content">
+    <markdown [data]="content" [lineNumbers]="true"></markdown>
   </div>
+
+  <div *ngIf="loading" class="markdownContent">Loading markdown...</div>
+  <div *ngIf="error" class="markdownContent">Error loading markdown file.</div>
 
   <app-back-to-top></app-back-to-top>
 </div>
