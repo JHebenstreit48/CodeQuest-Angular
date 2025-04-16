@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-back-to-top',
   standalone: true,
   imports: [CommonModule],  // ✅ This enables *ngIf
-  templateUrl: './back-to-top.component.html'
+  templateUrl: './back-to-top.component.html',
+  styleUrls: ['./back-to-top.component.scss']
 })
 export class BackToTopComponent {
   isVisible = false;
